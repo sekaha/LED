@@ -116,6 +116,7 @@ import pygame
 import os
 import time
 import math
+from PIL import Image
 
 pygame.init()
 
@@ -168,6 +169,8 @@ class Sprite:
         self.origin_y = origin_y
         self.angle = 0
         self.img_scale = 1
+        self.width = 0
+        self.height = 0
 
         if filename != "":
             try:
@@ -216,15 +219,27 @@ class Sprite:
         self.origin_x = self.width / 2
         self.origin_y = self.height / 2
 
+        for frame in self.frames:
+            frame.set_origin(self.origin_x, self.origin_y)
+
     def set_origin(self, x, y):
         self.origin_x = x
         self.origin_y = y
 
+        for frame in self.frames:
+            frame.set_origin(self.origin_x, self.origin_y)
+
     def set_origin_x(self, x):
         self.origin_x = x
 
+        for frame in self.frames:
+            frame.set_origin(self.origin_x, self.origin_y)
+
     def set_origin_y(self, y):
         self.origin_y = y
+
+        for frame in self.frames:
+            frame.set_origin(self.origin_x, self.origin_y)
 
     def get_origin_x(self):
         return self.origin_x
@@ -321,6 +336,10 @@ class Canvas:
         self.height = self.surface.get_height()
         # self.surface_array = pygame.surfarray.pixels3d(self.surface)
 
+    def export(self, file_name):
+        image = Image.fromarray(np.uint8(self.get_ndarray()))
+        image.save(file_name)
+
     def refresh(self, color=TRANSPARENT):
         self.surface.fill(color)
 
@@ -389,8 +408,8 @@ class Canvas:
     def get_angle(self):
         return self.angle
 
-    def scale(self, scale):
-        self.cnv_scale = cnv_scale
+    # def scale(self, scale):
+    #    self.cnv_scale = cnv_scale
 
     def get_scale(self):
         return self.cnv_scale
@@ -796,6 +815,7 @@ def get_brightness():
 
 # GRID SIZE CONTROLS
 
+
 # Normal size controls
 def set_width(new_width):
     global _WIDTH
@@ -1061,16 +1081,16 @@ def draw_hypercube(x, y, hypercube, scale, color, rotations=None):
             vertex.transforms[0] += x
             vertex.transforms[1] += y
 
-            for edge in hypercube.edges:
-                point_a = edge.endpoints[0]
-                point_b = edge.endpoints[1]
-                draw_line(
-                    point_a.transforms[0],
-                    point_a.transforms[1],
-                    point_b.transforms[0],
-                    point_b.transforms[1],
-                    color,
-                )
+        for edge in hypercube.edges:
+            point_a = edge.endpoints[0]
+            point_b = edge.endpoints[1]
+            draw_line(
+                point_a.transforms[0],
+                point_a.transforms[1],
+                point_b.transforms[0],
+                point_b.transforms[1],
+                color,
+            )
 
     except:
         if hypercube.dimensions < 2:
@@ -1088,6 +1108,30 @@ def refresh(color=None):
             _current_canvas.surface.fill(_background_color)
         else:
             _current_canvas.surface.fill(TRANSPARENT)
+
+
+def color_oklab(L, a, b):
+    l_ = L + 0.3963377774 * a + 0.2158037573 * b
+    m_ = L - 0.1055613458 * a - 0.0638541728 * b
+    s_ = L - 0.0894841775 * a - 1.2914855480 * b
+
+    l, m, s = (l_**3, m_**3, s_**3)
+
+    r, g, b = (
+        4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+        -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+        -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s,
+    )
+
+    return tuple(round(max(0, min(1.0, c)) * 255) for c in (r, g, b))
+
+
+def oklch_to_oklab(L, c, h):
+    return [L, c * math.cos(h), c * math.sin(h)]
+
+
+def color_oklch(L, c, h):
+    return color_oklab(*oklch_to_oklab(L, c, h))
 
 
 def color_hsv(h, s, v):
@@ -1231,24 +1275,17 @@ def create_sprite_sheet(
 
 
 # draws a sprite taking an image
-def draw_sprite(x, y, sprite, w=0, h=0, color=None, _alpha=255):
-    new_sprite = sprite
+def draw_sprite(x, y, sprite):
 
-    if color != None:
-        new_sprite = colorize(sprite, color)
+    # if _alpha != 255:
+    #    new_sprite.set_alpha(_alpha)
 
-    if _alpha != 255:
-        new_sprite.set_alpha(_alpha)
-
-    if isinstance(new_sprite, Sprite):
-        draw_canvas(x, y, new_sprite.get_current_frame())
-    elif isinstance(new_sprite, Canvas):
-        draw_canvas(x, y, new_sprite)
+    if isinstance(sprite, Sprite):
+        draw_canvas(x, y, sprite.get_current_frame())
+    elif isinstance(sprite, Canvas):
+        draw_canvas(x, y, sprite)
     else:
         raise TypeError(f"Cannot draw a sprite of type {type(sprite)}")
-
-    if w != 0:
-        new_sprite = pygame.transform.scale(new_sprite, (w, h))
 
     # _internal_canvas.surface.blit(
     #    new_sprite, (x - sprite.origin_x, y - sprite.origin_y))
@@ -1346,6 +1383,7 @@ def reset_text():
 
 ############# Canvases and blendmodes #############
 
+
 # intialize a transparent canvas based on width and height
 def create_canvas(width, height):
     return Canvas(width, height)
@@ -1386,6 +1424,7 @@ def get_canvas():
 def set_canvas(canvas):
     global _current_canvas, _internal_canvas, _canvas_stack
     _current_canvas = canvas
+
     if _internal_canvas != _BLEND_SCREEN:
         _internal_canvas = canvas
     _canvas_stack = [_internal_canvas]
@@ -1418,52 +1457,43 @@ def pop_canvas():
         _internal_canvas = _canvas_stack[-1]
 
 
-def draw_canvas(x, y, canvas):
-    if isinstance(canvas, Sprite):
-        canvas = canvas.get_current_frame()
-    elif isinstance(canvas, np.ndarray):
-        # typical RGB canvas
-        if canvas.shape[-1] == 3:
-            _internal_canvas.surface.blit(
-                pygame.surfarray.make_surface(canvas), (x, y), area=None
-            )
+def __ndarray_to_canvas(arr):
+    # typical RGB canvas
+    if arr.shape[-1] == 3:
+        return pygame.surfarray.make_surface(arr)
 
-        # RGBA
-        elif canvas.shape[-1] == 4:
-            _internal_canvas.surface.blit(
-                pygame.image.frombuffer(
-                    np.rot90(canvas, -1).flatten(), canvas.shape[:2], "RGBA"
-                ),
-                (x, y),
-                area=None,
-            )
+    # RGBA
+    elif arr.shape[-1] == 4:
+        return pygame.image.frombuffer(
+            np.rot90(arr, -1).flatten(), arr.shape[:2], "RGBA"
+        )
 
-        # Greyscale
-        # 2D Greyscale
-        elif len(canvas.shape) == 2:
-            black_and_white = np.repeat(canvas[:, :, np.newaxis], 3, 2)
-            _internal_canvas.surface.blit(
-                pygame.surfarray.make_surface(black_and_white), (x, y), area=None
-            )
-        # 3D Greyscale
-        elif canvas.shape[-1] == 1:
-            black_and_white = np.repeat(canvas, 3, 2)
-            _internal_canvas.surface.blit(
-                pygame.surfarray.make_surface(black_and_white), (x, y), area=None
-            )
+    # 2D Greyscale
+    elif len(arr.shape) == 2:
+        return pygame.surfarray.make_surface(np.repeat(arr[:, :, np.newaxis], 3, 2))
 
-        # Invalid input handeling
-        else:
+    # 3D Greyscale
+    elif arr.shape[-1] == 1:
+        return pygame.surfarray.make_surface(np.repeat(arr, 3, 2))
+
+    # Invalid input
+    else:
+        if isinstance(arr, np.ndarray):
             raise ValueError(
                 "Cannot handle arrays of shape "
                 + str(canvas.shape)
                 + ". Array must be grey scale, rgb, or rgba"
             )
-    else:
-        canvas = canvas.get_updated_canvas()
-        if canvas.width == 131:
-            print(canvas.origin_x, canvas.origin_y)
+        else:
+            raise ValueError(f"Input must be a NumPy array. Received: {type(arr)}")
 
+
+def draw_canvas(x, y, canvas):
+    if isinstance(canvas, Sprite):
+        canvas = canvas.get_current_frame()
+    elif isinstance(canvas, np.ndarray):
+        _internal_canvas.surface.blit(__ndarray_to_canvas(canvas), (x, y), area=None)
+    else:
         _internal_canvas.surface.blit(
             canvas.surface, (x - canvas.origin_x, y - canvas.origin_y), area=None
         )
@@ -1505,6 +1535,8 @@ def colorize(canvas, color):
         current_frame = canvas.get_frame()
         new_sprite = Sprite()
         new_sprite.set_origin(origin[0], origin[1])
+        new_sprite.width = canvas.get_width()
+        new_sprite.height = canvas.get_height()
 
         # this feels really cursed, recursion
         for frame in canvas.frames:
@@ -1537,7 +1569,9 @@ def scale_relative(canvas, rel_width, rel_height=None, smooth=False):
     if rel_height == None:
         rel_height = rel_width
 
-    if isinstance(canvas, Canvas):
+    elif isinstance(canvas, Canvas) or isinstance(canvas, np.ndarray):
+        if isinstance(canvas, np.ndarray):
+            canvas = Canvas(*canvas.shape, surface=__ndarray_to_canvas(canvas))
         return scale(
             canvas,
             canvas.get_width() * rel_width,
@@ -1607,7 +1641,10 @@ def scale(canvas, width, height, smooth=False):
         return new_sprite
 
     # Scaling the canvas
-    if isinstance(canvas, Canvas):
+    elif isinstance(canvas, Canvas) or isinstance(canvas, np.ndarray):
+        if isinstance(canvas, np.ndarray):
+            canvas = Canvas(*canvas.shape, surface=__ndarray_to_canvas(canvas))
+
         # rescale origin
         prev_size = (canvas.get_width(), canvas.get_height())
         origin_scale = (width / prev_size[0], height / prev_size[0])
@@ -1708,7 +1745,6 @@ def rotate(canvas, angle, iterations=3):
         scaled_canvas = updated_canvas.surface
 
         if updated_canvas.scaled8x == None:
-            print("made new one")
             for i in range(iterations):
                 scaled_canvas = pygame.transform.scale2x(scaled_canvas)
             updated_canvas.scaled8x = scaled_canvas
@@ -1878,6 +1914,14 @@ def get_window_scale():
     return _WINDOW_SCALE
 
 
+def set_window_pos(x, y):
+    pygame.display.set_position((x, y))
+
+
+def get_window_pos():
+    return pygame.display.get_window_position()
+
+
 # Keyboard and mouse input
 def _update_inputs():
     global _key_held, _key_pressed, _key_released, _key_input
@@ -1927,11 +1971,11 @@ def _update_inputs():
         if event.type == pygame.JOYDEVICEADDED:
             joy = pygame.joystick.Joystick(event.device_index)
             _joysticks[joy.get_instance_id()] = joy
-            print("Joystick {} connencted".format(joy.get_instance_id()))
+            print(f"Joystick {joy.get_instance_id()} connencted")
 
         if event.type == pygame.JOYDEVICEREMOVED:
             del _joysticks[event.instance_id]
-            print("Joystick {} disconnected".format(event.instance_id))
+            print(f"Joystick {event.instance_id} disconnected")
 
     if len(_joysticks) > _joystick_environment:
         if _joysticks[_joystick_environment].get_numhats() > 0:
@@ -2142,7 +2186,7 @@ def get_button(button):
     elif len(_joysticks) > _joystick_environment:
         return _joysticks[_joystick_environment].get_button(button)
     else:
-        print(f"Joystick not connected, button {button} cannot be checked")
+        # print(f"Joystick not connected, button {button} cannot be checked")
         return False
 
 
