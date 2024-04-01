@@ -113,6 +113,7 @@ import struct
 import socket
 import numpy as np
 import pygame
+from pygame._sdl2.video import Window
 import os
 import time
 import math
@@ -1873,6 +1874,7 @@ def _blit_buffer_canvas():
 
 # update the window after sizing
 def _update_window():
+    pygame.init()
     global _NUMLEDS
     global _pixels
     global _orientation
@@ -1895,6 +1897,7 @@ def _update_window():
     _current_canvas = _GAME_SCREEN
 
     # internal canvas too?
+    os.environ["SDL_VIDEO_CENTERED"] = "1"
     _internal_canvas = _GAME_SCREEN
     _WINDOW_WIDTH = get_width_adjusted() * _WINDOW_SCALE
     _WINDOW_HEIGHT = get_height_adjusted() * _WINDOW_SCALE
@@ -1915,11 +1918,12 @@ def get_window_scale():
 
 
 def set_window_pos(x, y):
-    pygame.display.set_position((x, y))
+    win = Window.from_display_module()
+    win.position = (x, y)
 
 
 def get_window_pos():
-    return pygame.display.get_window_position()
+    return Window.from_display_module().position
 
 
 # Keyboard and mouse input
