@@ -690,8 +690,10 @@ BM_MAX = pygame.BLEND_MAX
 _blend_mode = BM_NORMAL
 
 # text variables
-FNT_NORMAL = os.path.dirname(os.path.abspath(__file__)) + "/Kaku.ttf"
-FNT_SMALL = os.path.dirname(os.path.abspath(__file__)) + "/m3x6.ttf"
+FNT_NORMAL = (os.path.dirname(os.path.abspath(__file__)) + "/Kaku.ttf", 16)
+FNT_SMALL = (os.path.dirname(os.path.abspath(__file__)) + "/m3x6.ttf", 8)
+FNT_LARGE = (os.path.dirname(os.path.abspath(__file__)) + "/CozetteVector.ttf", 8)
+
 _default_font = FNT_NORMAL
 _h_text_alignment = 0
 _v_text_alignment = 0
@@ -1302,12 +1304,10 @@ def draw_text(x, y, str, color, size=None):
     global _h_text_alignment
     global _v_text_alignment
     pygame.font.init()  # you have to call this at the start
+
     if size == None:
-        if _default_font == FNT_SMALL:
-            size = 16
-        else:
-            size = 8
-    myfont = pygame.font.Font(_default_font, size)
+        size = _default_font[1]
+    myfont = pygame.font.Font(_default_font[0], size)
     textcanvas = myfont.render(str, False, color)
     text_rect = textcanvas.get_rect()
 
@@ -1331,9 +1331,9 @@ def draw_text(x, y, str, color, size=None):
     _update_blend_canvas()
 
 
-def set_font(font):
+def set_font(font, size=16):
     global _default_font
-    _default_font = font
+    _default_font = (font, size)
 
 
 def reset_font():
@@ -1550,10 +1550,7 @@ def colorize(canvas, color):
             new_image = canvas.surface.convert_alpha()
             origin = (canvas.get_origin_x(), canvas.get_origin_y())
         elif isinstance(canvas, np.ndarray):
-            if len(canvas.shape) == 2:
-                return np.prod((canvas[:, :, np.newaxis], np.array(color))) / 255
-            else:
-                return (canvas * np.array(color)) / 255
+            return colorize(__ndarray_to_canvas(canvas), color)
         elif isinstance(canvas, pygame.Surface):
             new_image = canvas.convert_alpha()
         else:
@@ -2168,8 +2165,6 @@ def get_controller_count():
 
 
 # joy stick inputs
-
-
 def get_button(button):
     if button > 16:
         print(f"Button {button} does not exist")
@@ -2235,6 +2230,7 @@ def get_haxis(joystick):
 
 def get_vaxis(joystick):
     axis_val = 0
+
     if len(_joysticks) > _joystick_environment:
         if joystick == JS_LSTICK:
             axis_val = _joysticks[_joystick_environment].get_axis(1)
