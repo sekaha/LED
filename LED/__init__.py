@@ -692,7 +692,7 @@ _blend_mode = BM_NORMAL
 # text variables
 FNT_NORMAL = (os.path.dirname(os.path.abspath(__file__)) + "/Kaku.ttf", 16)
 FNT_SMALL = (os.path.dirname(os.path.abspath(__file__)) + "/m3x6.ttf", 8)
-FNT_LARGE = (os.path.dirname(os.path.abspath(__file__)) + "/CozetteVector.ttf", 8)
+FNT_LARGE = (os.path.dirname(os.path.abspath(__file__)) + "/CozetteVector.ttf", 13)
 
 _default_font = FNT_NORMAL
 _h_text_alignment = 0
@@ -1307,6 +1307,7 @@ def draw_text(x, y, str, color, size=None):
 
     if size == None:
         size = _default_font[1]
+
     myfont = pygame.font.Font(_default_font[0], size)
     textcanvas = myfont.render(str, False, color)
     text_rect = textcanvas.get_rect()
@@ -1333,7 +1334,11 @@ def draw_text(x, y, str, color, size=None):
 
 def set_font(font, size=16):
     global _default_font
-    _default_font = (font, size)
+
+    if font not in (FNT_LARGE, FNT_NORMAL, FNT_SMALL):
+        _default_font = (font, size)
+    else:
+        _default_font = font
 
 
 def reset_font():
@@ -1397,22 +1402,22 @@ def convert_to_canvas(array):
 
     if isinstance(array, np.ndarray):
         # typical RGB canvas
-        if canvas.shape[-1] == 3:
+        if array.shape[-1] == 3:
             pygame.surfarray.make_surface(array)
 
         # RGBA
-        elif canvas.shape[-1] == 4:
+        elif array.shape[-1] == 4:
             pygame.image.frombuffer(
                 np.rot90(array, -1).flatten(), array.shape[:2], "RGBA"
             )
 
         # 2D Greyscale
-        elif len(canvas.shape) == 2:
-            black_and_white = np.repeat(canvas[:, :, np.newaxis], 3, 2)
+        elif len(array.shape) == 2:
+            black_and_white = np.repeat(array[:, :, np.newaxis], 3, 2)
             pygame.surfarray.make_surface(black_and_white)
         # 3D Greyscale
-        elif canvas.shape[-1] == 1:
-            black_and_white = np.repeat(canvas, 3, 2)
+        elif array.shape[-1] == 1:
+            black_and_white = np.repeat(array, 3, 2)
             pygame.surfarray.make_surface(black_and_white)
     else:
         raise TypeError(f"Cannot create canvases from type {type(array)}")
@@ -1482,7 +1487,7 @@ def __ndarray_to_canvas(arr):
         if isinstance(arr, np.ndarray):
             raise ValueError(
                 "Cannot handle arrays of shape "
-                + str(canvas.shape)
+                + str(arr.shape)
                 + ". Array must be grey scale, rgb, or rgba"
             )
         else:
