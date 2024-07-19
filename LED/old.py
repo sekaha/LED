@@ -262,7 +262,7 @@ class Sprite:
         return self.angle
 
     def scale(self, scale):
-        self.img_scale = img_scale
+        self.img_scale = scale
 
     def get_scale(self):
         return self.img_scale
@@ -409,8 +409,8 @@ class Canvas:
     def get_angle(self):
         return self.angle
 
-    # def scale(self, scale):
-    #    self.cnv_scale = cnv_scale
+    def scale(self):
+        pass
 
     def get_scale(self):
         return self.cnv_scale
@@ -481,7 +481,7 @@ class Canvas:
 # SENDS PACKETS TO THE GRID
 
 
-class _FastOPC(object):
+class __OPC:
     """High-performance Open Pixel Control client, using Numeric Python.
     By default, assumes the OPC server is running on localhost. This may be
     overridden with the OPC_SERVER environment variable, or the 'server'
@@ -658,7 +658,7 @@ pygame.display.set_icon(
 pygame.display.set_caption(f"LED Simulator")
 
 # SERVER
-_CLIENT = _FastOPC()
+_CLIENT = __OPC()
 _networked = False
 
 # GRID HARDWARE SETTINGS
@@ -771,7 +771,7 @@ def grid_config(address, width, height, _orientation, _brightness):
 
 def set_server(address):
     global _CLIENT
-    _CLIENT = _FastOPC(address)
+    _CLIENT = __OPC(address)
 
 
 def disable_networking():

@@ -1,0 +1,40 @@
+from LEDEngine import _LEDEngine
+from constants import *
+import math
+import sdl2
+import sdl2.ext
+
+_led_engine = _LEDEngine()
+
+
+def draw():
+    _led_engine.draw()
+
+
+# will be used for circle tbh tbh
+def draw_ngon(x, y, n, r):
+    if n < 3:
+        raise ValueError("The number of sides must be at least 3.")
+
+
+# _led_engine._clean()
+def draw_pixel(x, y, color):
+    r, g, b, a = color
+
+    sdl2.SDL_SetRenderDrawColor(_led_engine._renderer, r, g, b, a)
+
+    # Draw the point
+    sdl2.SDL_RenderDrawPoint(
+        _led_engine._renderer,
+        int(x),  #  % (_led_engine._internal_canvas.surface.contents.w)
+        int(y),  # % (_led_engine._internal_canvas.surface.contents.h)
+    )
+
+    sdl2.SDL_RenderPresent(_led_engine._renderer)
+
+
+while True:
+    draw_pixel(10, 10, (255, 0, 0, 255))
+    # sdl2.SDL_UnlockSurface(_led_engine._internal_canvas.surface)
+    draw()
+    # sdl2.SDL_LockSurface(_led_engine._internal_canvas.surface)
