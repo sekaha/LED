@@ -3,14 +3,14 @@ import socket
 import time
 import struct
 import numpy as np
-from typing import Union, List
+from typing import Union, List, Optional
 
 
 class _OPCClient:
-    def __init__(self, server: Union[str, None] = None) -> None:
+    def __init__(self, server: Optional[str] = None) -> None:
         # Set server address; defaults to environment variable or localhost
         self.server_address = server or os.getenv("OPC_SERVER") or "127.0.0.1:7890"
-        self.socket: Union[socket.socket, None] = None
+        self.socket: Optional[socket.socket] = None
         self.host, port_str = self.server_address.split(":")
         self.port = int(port_str)
 

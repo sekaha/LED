@@ -7,8 +7,24 @@ import sdl2.ext
 _led_engine = _LEDEngine()
 
 
-def draw():
-    _led_engine.draw()
+def set_canvas(canvas):
+    pass
+
+
+def reset_canvas():
+    pass
+
+
+def get_canvas(canvas):
+    pass
+
+
+def push_canvas(canvas):
+    pass
+
+
+def pop_canvas():
+    pass
 
 
 # will be used for circle tbh tbh
@@ -31,6 +47,10 @@ def draw_pixel(x, y, color):
     )
 
     sdl2.SDL_RenderPresent(_led_engine._renderer)
+
+
+def draw():
+    _led_engine.draw()
 
 
 while True:

@@ -1,8 +1,11 @@
 from abc import ABC, abstractmethod
+from RenderContext import _RenderContext
 
 
-class Drawable(ABC):
-    def __init__(self, origin_x: float = 0, origin_y: float = 0):
+class _Drawable(ABC):
+    def __init__(
+        self, context: _RenderContext, origin_x: float = 0, origin_y: float = 0
+    ):
         self.origin_x = origin_x
         self.origin_y = origin_y
         self.width = 0
