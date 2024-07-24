@@ -11,6 +11,7 @@ class _LEDEngine:
     def __init__(self):
         self._CLIENT = _OPCClient()
         self._networked = False
+        self._canvas_manager = _CanvasManager(self)
 
         # GRID HARDWARE SETTINGS
         self._width = 60
@@ -62,18 +63,18 @@ class _LEDEngine:
         self._update_environment()
 
         # Draw the simulation screen
-        # sdl2.SDL_BlitScaled(self._GAME_SCREEN.surface, None, self._scaled_surface, None)
+        sdl2.SDL_BlitScaled(self._GAME_SCREEN.surface, None, self._scaled_surface, None)
 
         # Lock the scaled surface to get the pixel data
-        # sdl2.SDL_LockSurface(self._scaled_surface)
-        # pixels = self._scaled_surface.contents.pixels
-        # pitch = self._scaled_surface.contents.pitch
+        sdl2.SDL_LockSurface(self._scaled_surface)
+        pixels = self._scaled_surface.contents.pixels
+        pitch = self._scaled_surface.contents.pitch
 
         # update screen
-        # sdl2.SDL_UpdateTexture(self._texture, None, pixels, pitch)
-        # sdl2.SDL_UnlockSurface(self._scaled_surface)
-        # sdl2.SDL_RenderCopy(self._renderer, self._texture, None, None)
-        # sdl2.SDL_RenderPresent(self._renderer)
+        sdl2.SDL_UpdateTexture(self._texture, None, pixels, pitch)
+        sdl2.SDL_UnlockSurface(self._scaled_surface)
+        sdl2.SDL_RenderCopy(self._renderer, self._texture, None, None)
+        sdl2.SDL_RenderPresent(self._renderer)
 
         # If self._networked then send self._pixels to the grid with our desired self._orientation
         if self._networked:

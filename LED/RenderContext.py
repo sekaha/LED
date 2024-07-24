@@ -1,5 +1,6 @@
 from CanvasManager import _CanvasManager
 import sdl2, sdl2.ext
+from OpenGL import GL
 
 
 class _RenderContext:
@@ -11,8 +12,15 @@ class _RenderContext:
         self.current_canvas = None
         self._WINDOW_SCALE = 11
         self._game_speed = 120
-        self._canvas_manager = _CanvasManager(self)
         self._background_color = (0, 0, 0)
+
+        # Initialize SDL with OpenGL context
+        sdl2.SDL_Init(sdl2.SDL_INIT_VIDEO)
+        sdl2.SDL_GL_SetAttribute(sdl2.SDL_GL_CONTEXT_MAJOR_VERSION, 3)
+        sdl2.SDL_GL_SetAttribute(sdl2.SDL_GL_CONTEXT_MINOR_VERSION, 3)
+        sdl2.SDL_GL_SetAttribute(
+            sdl2.SDL_GL_CONTEXT_PROFILE_MASK, sdl2.SDL_GL_CONTEXT_PROFILE_CORE
+        )
 
         self._window = sdl2.SDL_CreateWindow(
             b"LED Simulator",
@@ -20,15 +28,20 @@ class _RenderContext:
             sdl2.SDL_WINDOWPOS_CENTERED,
             self._width * self._WINDOW_SCALE,
             self._height * self._WINDOW_SCALE,
-            sdl2.SDL_WINDOW_RESIZABLE,
+            sdl2.SDL_WINDOW_OPENGL | sdl2.SDL_WINDOW_RESIZABLE,
         )
 
+        # Render with explicit OpenGL backend
+        self._gl_context = sdl2.SDL_GL_CreateContext(self.window)
         self._renderer = sdl2.SDL_CreateRenderer(
-            self._window, -1, sdl2.SDL_RENDERER_ACCELERATED
+            self.window,
+            -1,
+            sdl2.SDL_RENDERER_ACCELERATED | sdl2.SDL_RENDERER_PRESENTVSYNC,
         )
 
     def _clean(self):
         print("Flushed black. Cleaning up resources...")
+        sdl2.SDL_GL_DeleteContext(self._gl_context)
         sdl2.SDL_DestroyRenderer(self._renderer)
         sdl2.SDL_DestroyWindow(self._window)
         sdl2.SDL_Quit()

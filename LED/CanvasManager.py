@@ -9,7 +9,7 @@ class _CanvasManager:
     def __init__(self, context: _RenderContext) -> None:
         self._context = context
         self._canvas_stack: List[_Canvas] = []
-        self._current_canvas: _Canvas = _Canvas(self._context, 0, 0)  # put here xd
+        self._current_canvas: _Canvas = _Canvas(self._context, 0, 0)
 
     def set_canvas(self, canvas: _Canvas) -> None:
         """Set the current render target to the specified canvas."""
