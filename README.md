@@ -9,7 +9,7 @@ A python package for creating and simulating graphical applications that display
 
 **Here's some pretty images and videos of the LED grid and its simulator:**
 
-https://user-images.githubusercontent.com/22718210/164121139-90d2560b-615a-4e34-96de-4e1df4ce8af0.mp4
+![tankgame](https://i.imgur.com/UsvWBtg.mp4)
 
 A topdown psuedo-3D procedurally generated rogue-like shooter, with full native controller support. Made over the weekend after the hackathon.
 
