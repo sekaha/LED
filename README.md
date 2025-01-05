@@ -3,7 +3,7 @@
 A Python package for creating and simulating graphical applications that display on an LED grid. The package is fully documented, designed to be versatile, and very easy to use. Take a look at the examples to see just how simple it is to turn your ideas into code using the LED package!
 
 ### YouTube Trailer
-[https://www.youtube.com/watch?v=WWUICMdFa3I](https://www.youtube.com/watch?v=WWUICMdFa3I)
+[![WiLED](https://i.imgur.com/0CPYuYF.png)](https://www.youtube.com/watch?v=WWUICMdFa3I)
 
 ### Top-down Pseudo-3D Procedurally Generated Rogue-like Shooter
 
@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/a773b99f-c075-43ea-8ed4-47ce572d349d
 
 ![Voronoi](https://user-images.githubusercontent.com/22718210/164121674-fb5c522a-1240-46e9-967c-c2679257c367.jpg)
 
-A Voronoi-esque graphics visualization, all in just [https://github.com/sekaha/LED/blob/main/Examples/crystals.py](30 lines), including whitespace and comments!
+A Voronoi-esque graphics visualization, all in just [30 lines](https://github.com/sekaha/LED/blob/main/Examples/crystals.py), including whitespace and comments!
 
 ### 3D Graphing Tool
 
