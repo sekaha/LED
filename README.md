@@ -17,11 +17,13 @@ https://github.com/user-attachments/assets/c9e291ad-c422-4300-a577-e0c1c31cecc3
 
 The coolest part about this is that the [code](https://raw.githubusercontent.com/sekaha/LED/refs/heads/main/Examples/fractal.py) fits in just 46 lines, including whitespace and comments (or at least it did—I've made some modifications since, but you can find it in the git history)!
 
+### Voronoi-esque Graphics Visualization
+
+https://github.com/user-attachments/assets/a773b99f-c075-43ea-8ed4-47ce572d349d  
+
 ![Voronoi](https://user-images.githubusercontent.com/22718210/164121674-fb5c522a-1240-46e9-967c-c2679257c367.jpg)
 
-### Voronoi-esque Graphics Visualization
-https://github.com/user-attachments/assets/a773b99f-c075-43ea-8ed4-47ce572d349d  
-A Voronoi-esque graphics visualization, all in just 36 lines, including whitespace and comments!
+A Voronoi-esque graphics visualization, all in just [https://github.com/sekaha/LED/blob/main/Examples/crystals.py](30 lines), including whitespace and comments!
 
 ### 3D Graphing Tool
 
