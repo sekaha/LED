@@ -9,17 +9,17 @@ A python package for creating and simulating graphical applications that display
 
 **Here's some pretty images and videos of the LED grid and its simulator:**
 
-![tankgame](https://i.imgur.com/UsvWBtg.mp4)
+![tankgame](https://github.com/user-attachments/assets/03c5db43-94d0-461c-b0d2-e0cd8925fd3c)
 
 A topdown psuedo-3D procedurally generated rogue-like shooter, with full native controller support. Made over the weekend after the hackathon.
 
-https://user-images.githubusercontent.com/22718210/164121588-59dc5f7c-1c21-4f9e-8b7a-a88a2b400d9b.mp4
+![fractal](https://github.com/user-attachments/assets/c9e291ad-c422-4300-a577-e0c1c31cecc3)
 
-A fractal zoomer, the coolest part about this is that the code fits in just 46 lines, including white spaces and comments!
+A fractal zoomer, the coolest part about this is that the [code](https://raw.githubusercontent.com/sekaha/LED/refs/heads/main/Examples/fractal.py) fits in just 46 lines, including white spaces and comments (or it used to at least lol, I made modifications since, but you can find it in the git history)!
 
 ![voronoi](https://user-images.githubusercontent.com/22718210/164121674-fb5c522a-1240-46e9-967c-c2679257c367.jpg)
 
-https://user-images.githubusercontent.com/22718210/164121656-7f323e74-cb7c-4934-9abe-f102fc67da15.mp4
+
 
 A Voronoi-esque graphics visualization, just in 36 lines, including white spaces and comments!
 
