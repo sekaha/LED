@@ -20,14 +20,23 @@ A fractal zoomer, the coolest part about this is that the [code](https://raw.git
 ![voronoi](https://user-images.githubusercontent.com/22718210/164121674-fb5c522a-1240-46e9-967c-c2679257c367.jpg)
 
 
+
+https://github.com/user-attachments/assets/a773b99f-c075-43ea-8ed4-47ce572d349d
+
+
+
 A Voronoi-esque graphics visualization, just in 36 lines, including white spaces and comments!
 
-https://user-images.githubusercontent.com/22718210/164121707-d7bb0142-caa1-4c5a-b3f9-7d29d03a0e2f.mp4
+
+https://github.com/user-attachments/assets/e836be2b-3bad-4624-9bd4-20962e1d24fe
+
 
 A 3D graphing tool.
 
-https://user-images.githubusercontent.com/22718210/164121846-d1eaa6fa-3dce-4639-ac5f-154d727a51c6.mp4
 
-https://user-images.githubusercontent.com/22718210/164121850-ec414321-7940-403b-bcae-62a386444c28.mp4
+https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6
+
+https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13
+
 
 N-dimensional hypercubes are a fun little feature in the LED package, here you can see a 3D cube and a 4D tesseract.
