@@ -24,7 +24,5 @@ https://github.com/user-attachments/assets/e836be2b-3bad-4624-9bd4-20962e1d24fe
 
 ### N-dimensional Hypercubes
 https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6  
-N-dimensional hypercubes are a fun feature in the LED package. Here you can see a 3D cube and a 4D tesseract.
-
-### Another Cool Visualization
 https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13
+N-dimensional hypercubes are a fun feature in the LED package. Here you can see a 3D cube and a 4D tesseract.
