@@ -5,6 +5,24 @@ A Python package for creating and simulating graphical applications that display
 ### YouTube Trailer
 [![WiLED](https://i.imgur.com/0CPYuYF.png)](https://www.youtube.com/watch?v=WWUICMdFa3I)
 
+### LEDoom
+A neon-soaked, space-themed FPS inspired by Doom, running at 7.5% of the original’s resolution (~1/5th the resolution of a Game Boy). Built using the classic raycasting method with some nice modern touches like a dynamic lighting engine, procedural gun sway, recoil, firing animations, and particle effects :). There's a number of interesting things going on here to make the pixel art feel more fluid, mip-mapping, and pixel-art orientated rotation algorithms are probably the biggest two. Check out the timelapse:
+
+[![LEDoom](https://github.com/user-attachments/assets/f0129474-ba5a-4e15-8ce9-ca6f1acf230d)](https://www.youtube.com/watch?v=P3i4fNi8Vm4)
+
+**Here's some standalone pictures/videos of it (no audio):**
+
+https://github.com/user-attachments/assets/9ab1e1fb-3e67-402f-ad00-e754fd38cc07
+
+![image](https://github.com/user-attachments/assets/0b9d62ef-0c5f-4454-bc2c-b0fc3b92d9c9)
+
+
+**Videos with audio!!!**
+
+https://github.com/user-attachments/assets/e59b62e8-807f-40db-8437-16a30f769f29
+
+https://github.com/user-attachments/assets/6d7acabc-e42e-4290-9ddc-e4815ad645a2
+
 ### Top-down Pseudo-3D Procedurally Generated Rogue-like Shooter
 A top-down, pseudo-3D, procedurally generated rogue-like shooter, with full native controller support. Made during a hackathon and finished over the weekend after the hackathon.
 
