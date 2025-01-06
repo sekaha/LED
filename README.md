@@ -1,5 +1,5 @@
 # WiLED
----
+
 A Python package for creating and simulating graphical applications that display on an LED grid. The package is fully documented, designed to be versatile, and very easy to use. Take a look at the examples to see just how simple it is to turn your ideas into code using the WiLED package!
 
 ### YouTube Trailer
