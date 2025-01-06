@@ -1,6 +1,6 @@
 ![WiLED](https://github.com/sekaha/LED/assets/22718210/cb89ff39-6202-45be-9f80-c973a3ea1b29)
 ---
-A Python package for creating and simulating graphical applications that display on an LED grid. The package is fully documented, designed to be versatile, and very easy to use. Take a look at the examples to see just how simple it is to turn your ideas into code using the LED package!
+A Python package for creating and simulating graphical applications that display on an LED grid. The package is fully documented, designed to be versatile, and very easy to use. Take a look at the examples to see just how simple it is to turn your ideas into code using the WiLED package!
 
 ### YouTube Trailer
 [![WiLED](https://i.imgur.com/0CPYuYF.png)](https://www.youtube.com/watch?v=WWUICMdFa3I)
