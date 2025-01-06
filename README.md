@@ -19,9 +19,9 @@ https://github.com/user-attachments/assets/9ab1e1fb-3e67-402f-ad00-e754fd38cc07
 
 **Videos with audio!!!**
 
-https://github.com/user-attachments/assets/e59b62e8-807f-40db-8437-16a30f769f29
+https://github.com/user-attachments/assets/bab4eb97-252f-4b29-aa20-18098e9c0fdf
 
-https://github.com/user-attachments/assets/6d7acabc-e42e-4290-9ddc-e4815ad645a2
+https://github.com/user-attachments/assets/e59b62e8-807f-40db-8437-16a30f769f29
 
 ### Top-down Pseudo-3D Procedurally Generated Rogue-like Shooter
 A top-down, pseudo-3D, procedurally generated rogue-like shooter, with full native controller support. Made during a hackathon and finished over the weekend after the hackathon.
