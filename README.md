@@ -6,7 +6,7 @@ A Python package for creating and simulating graphical applications that display
 [![WiLED](https://i.imgur.com/0CPYuYF.png)](https://www.youtube.com/watch?v=WWUICMdFa3I)
 
 ### Top-down Pseudo-3D Procedurally Generated Rogue-like Shooter
-A top-down, pseudo-3D, procedurally generated rogue-like shooter, with full native controller support. Made over the weekend after the hackathon.
+A top-down, pseudo-3D, procedurally generated rogue-like shooter, with full native controller support. Made during a hackathon and finished over the weekend after the hackathon.
 
 https://github.com/user-attachments/assets/03c5db43-94d0-461c-b0d2-e0cd8925fd3c
 
