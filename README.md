@@ -39,9 +39,9 @@ A top-down, pseudo-3D, procedurally generated rogue-like shooter, with full nati
 ### N-dimensional Hypercubes  
 N-dimensional hypercubes are a fun feature in the LED package. Here you can see a 3D cube and a 4D tesseract.
 
-[![Hypercubes](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)
-
 [![Tesseract](https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13)](https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13)
+
+[![Hypercubes](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)
 
 ---
 
