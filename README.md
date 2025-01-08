@@ -22,7 +22,7 @@ A neon-soaked, space-themed FPS inspired by Doom, running at 7.5% of the origina
 [![image](https://github.com/user-attachments/assets/0b9d62ef-0c5f-4454-bc2c-b0fc3b92d9c9)](https://github.com/user-attachments/assets/999683fc-a869-48e0-8ac3-dd56977c15b6)
 
 
-**Videos with audio!!!**
+**Videos with audio (loud + pew pew sounds)!!!**
 
 [![LEDoom Video 1](https://github.com/user-attachments/assets/f0129474-ba5a-4e15-8ce9-ca6f1acf230d)](https://github.com/user-attachments/assets/bab4eb97-252f-4b29-aa20-18098e9c0fdf)
 
