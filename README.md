@@ -5,12 +5,13 @@ A Python package for creating and simulating graphical applications that display
 ---
 
 ### YouTube Trailer
+[Link](https://www.youtube.com/watch?v=WWUICMdFa3I) (or click on the image below)
 [![WiLED](https://i.imgur.com/0CPYuYF.png)](https://www.youtube.com/watch?v=WWUICMdFa3I)
 
 ---
 
 ### LEDoom  
-A neon-soaked, space-themed FPS inspired by Doom, running at 7.5% of the original’s resolution (~1/5th the resolution of a Game Boy). Built using the classic raycasting method with some nice modern touches like a dynamic lighting engine, procedural gun sway, recoil, firing animations, and particle effects :). There's a number of interesting things going on here to make the pixel art feel more fluid, mip-mapping, and pixel-art orientated rotation algorithms are probably the biggest two. Check out the timelapse:
+A neon-soaked, space-themed FPS inspired by Doom, running at 7.5% of the original’s resolution (~1/5th the resolution of a Game Boy). Built using the classic raycasting method with some nice modern touches like a dynamic lighting engine, procedural gun sway, recoil, firing animations, and particle effects :). There's a number of interesting things going on here to make the pixel art feel more fluid, mip-mapping, and pixel-art orientated rotation algorithms are probably the biggest two. Check out the [timelapse](https://www.youtube.com/watch?v=P3i4fNi8Vm4):
 
 [![LEDoom](https://github.com/user-attachments/assets/f0129474-ba5a-4e15-8ce9-ca6f1acf230d)](https://www.youtube.com/watch?v=P3i4fNi8Vm4)
 
@@ -42,6 +43,19 @@ N-dimensional hypercubes are a fun feature in the LED package. Here you can see 
 [![Tesseract](https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13)](https://github.com/user-attachments/assets/11dbb863-ccb7-4237-9ba4-04b012ec5d13)
 
 [![Hypercubes](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)](https://github.com/user-attachments/assets/735ca7ab-763e-494a-af3f-27c41c4f74c6)
+
+---
+
+### Fluid Simulation
+Here's fluid simulation + [boids](https://en.wikipedia.org/wiki/Boids):
+
+https://github.com/user-attachments/assets/424d561c-6f72-4d44-9160-efbb2e37d5b7
+
+https://github.com/user-attachments/assets/d76beb2d-04cf-46d0-815b-c5912b4644c2
+
+Here's [Bad Apple but it's a Fluid Simulation but it's on an LED Grid](https://www.youtube.com/watch?v=oCva_8jn29k):
+
+[![image](https://github.com/user-attachments/assets/16938478-4b9d-4ffb-ac41-c3f8f7d8c0ff)](https://www.youtube.com/watch?v=oCva_8jn29k)
 
 ---
 
